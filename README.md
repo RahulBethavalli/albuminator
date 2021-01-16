@@ -9,8 +9,4 @@
 
 ## Run following for Required Packages
 
-pip install --upgrade pip  
-pip install numpy Flask  
-pip install werkzeug  
-conda update -n base conda  
-conda install gunicorn
+use environment.yml file to create the conda environment.
