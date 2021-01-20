@@ -51,3 +51,32 @@ def get_prediction_class(filename):
     output_class = label_vgg[0][0][1]
 
     return output_class
+
+
+def create_sorted_folder():
+    ''' Created the sorted_folder to be diaplayed given the uplo 
+    '''
+    input_folder = 'uploads'
+
+    path = Path(input_folder)
+
+    file_paths = list(path.glob('*'))
+    file_paths = [i.as_posix() for i in file_paths]
+    file_paths = [pth for pth in file_paths if allowed_file(pth)]
+
+    file_classes = [get_prediction_class(pth) for pth in file_paths]
+
+    output_folder = 'sorted_folder'
+
+    if not os.path.exists(output_folder):
+        os.mkdir(output_folder)
+
+    for f_name, f_class in zip(file_paths, file_classes):
+        src = f_name
+        dest = os.path.join(output_folder, f_class, f_name.split('/')[-1])
+        dest_folder = '/'.join(dest.split('/')[:-1])
+
+        if not os.path.exists(dest_folder):
+            os.mkdir(dest_folder)
+
+        shutil.move(src, dest)
