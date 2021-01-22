@@ -6,6 +6,11 @@ from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.applications.imagenet_utils import decode_predictions
 from tensorflow.keras.applications import vgg16
 
+from pathlib2 import Path
+from server import allowed_file
+import shutil
+import os
+
 
 def get_prediction_class(filename):
     """
@@ -67,6 +72,9 @@ def create_sorted_folder():
     file_classes = [get_prediction_class(pth) for pth in file_paths]
 
     output_folder = 'sorted_folder'
+
+    if os.path.exists(output_folder):
+        shutil.rmtree(output_folder)
 
     if not os.path.exists(output_folder):
         os.mkdir(output_folder)

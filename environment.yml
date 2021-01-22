@@ -82,6 +82,7 @@ dependencies:
     - packaging==20.8
     - pandocfilters==1.4.3
     - parso==0.8.1
+    - pathlib2==2.3.5
     - pathspec==0.8.1
     - pexpect==4.8.0
     - pickleshare==0.7.5
