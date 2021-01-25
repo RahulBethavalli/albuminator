@@ -7,9 +7,10 @@ from tensorflow.keras.applications.imagenet_utils import decode_predictions
 from tensorflow.keras.applications import vgg16
 
 from pathlib2 import Path
-from server import allowed_file
 import shutil
 import os
+
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 
 def get_prediction_class(filename):
@@ -88,3 +89,6 @@ def create_sorted_folder():
             os.mkdir(dest_folder)
 
         shutil.move(src, dest)
+        
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

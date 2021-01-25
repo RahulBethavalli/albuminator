@@ -3,7 +3,14 @@
 # gunicorn -D --access-logfile server.log --timeout 60 server:app
 
 import os
-from flask import Flask, flash, request, redirect, render_template, url_for
+import zipfile
+import io
+import pathlib
+import shutil
+
+from model import *
+
+from flask import Flask, flash, request, redirect, render_template, url_for, send_file
 from werkzeug.utils import secure_filename
 
 app=Flask(__name__)
@@ -16,17 +23,12 @@ path = os.getcwd()
 
 UPLOAD_FOLDER = os.path.join(path, 'uploads')
 
+DOWNLOAD_FOLDER = os.path.join(path, 'sorted_folder')
+
 if not os.path.isdir(UPLOAD_FOLDER):
     os.mkdir(UPLOAD_FOLDER)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
-
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @app.route('/')
@@ -49,8 +51,29 @@ def upload_file():
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         flash('File(s) successfully uploaded')
-        return redirect('/')
+        process_uploaded_files()
+        #return redirect('/')
+        return redirect('/sorted_files')
+    
+@app.route('/sorted_files')
+def sorted_file_display():
+    base_path = pathlib.Path(DOWNLOAD_FOLDER)
+    #data = io.BytesIO()
+    #with zipfile.ZipFile(data, mode='w') as z:
+    #    for f_name in base_path.iterdir():
+    #        z.write(f_name)
+    #data.seek(0)
+    shutil.make_archive('sorted' , 'zip' , base_path)
+    return send_file('sorted.zip' , as_attachment = True)
+    #return send_file(
+    #    data,
+    #    mimetype='application/zip',
+    #    as_attachment=True,
+    #    attachment_filename='data.zip'
+    #)
 
+def process_uploaded_files():
+    create_sorted_folder()
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1',port=5000,debug=True,threaded=True)
