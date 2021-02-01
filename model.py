@@ -5,7 +5,7 @@ from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.applications.imagenet_utils import decode_predictions
 from tensorflow.keras.applications import vgg16
 
-from pathlib2 import Path
+from pathlib import Path
 import shutil
 import os
 
@@ -27,7 +27,7 @@ def get_prediction_class(filename):
 
     """
 
-    vgg_model = vgg16.VGG16(weights="imagenet")
+    vgg_model = vgg16.VGG16(weights="./vgg16_weights_tf_dim_ordering_tf_kernels.h5")
 
     # load an image in PIL format
     original = load_img(filename, target_size=(224, 224))
