@@ -134,3 +134,6 @@ dmypy.json
 # vs code
 .notebook
 .vscode
+
+# nn weights
+*.h5
