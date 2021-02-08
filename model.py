@@ -26,8 +26,12 @@ def get_prediction_class(filename):
         output_class
 
     """
-
-    vgg_model = vgg16.VGG16(weights="./vgg16_weights_tf_dim_ordering_tf_kernels.h5")
+    model_file_path = "./vgg16_weights_tf_dim_ordering_tf_kernels.h5"
+    if not os.path.exists(model_file_path):
+        vgg_model = vgg16.VGG16()
+        
+    else : 
+        vgg_model = vgg16.VGG16(weights="./vgg16_weights_tf_dim_ordering_tf_kernels.h5")
 
     # load an image in PIL format
     original = load_img(filename, target_size=(224, 224))
