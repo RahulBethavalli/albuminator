@@ -29,6 +29,10 @@ def get_prediction_class(filename):
     model_file_path = "./vgg16_weights_tf_dim_ordering_tf_kernels.h5"
     if not os.path.exists(model_file_path):
         vgg_model = vgg16.VGG16()
+        print('downloading model')
+        vgg_model.save(model_file_path)
+        print('model saved')
+
         
     else : 
         vgg_model = vgg16.VGG16(weights="./vgg16_weights_tf_dim_ordering_tf_kernels.h5")
@@ -95,3 +99,5 @@ def create_sorted_folder():
         
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
