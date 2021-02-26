@@ -12,6 +12,15 @@ import os
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 
+def download_vgg16(model_file_path):
+    # saves the vgg model in model_file_path
+    vgg_model = vgg16.VGG16()
+    print('downloading model')
+    vgg_model.save(model_file_path)
+    print('model saved')
+
+
+
 def get_prediction_class(filename):
     """
 
@@ -26,17 +35,12 @@ def get_prediction_class(filename):
         output_class
 
     """
-    model_file_path = "./vgg16_weights_tf_dim_ordering_tf_kernels.h5"
+    model_file_path = "saved_models/vgg16_weights_tf_dim_ordering_tf_kernels.h5"
+
     if not os.path.exists(model_file_path):
-        vgg_model = vgg16.VGG16()
-        print('downloading model')
-        vgg_model.save(model_file_path)
-        print('model saved')
+        download_vgg16(model_file_path)
 
-        
-    else : 
-        vgg_model = vgg16.VGG16(weights="./vgg16_weights_tf_dim_ordering_tf_kernels.h5")
-
+    vgg_model = vgg16.VGG16(weights=model_file_path)
     # load an image in PIL format
     original = load_img(filename, target_size=(224, 224))
 

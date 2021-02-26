@@ -2,3 +2,7 @@ data
 sorted_folder
 sorted.zip
 uploads
+saved_models
+__pycache__
+.git
+.DS_Store
