@@ -38,7 +38,9 @@ def get_prediction_class(filename):
     model_file_path = "saved_models/vgg16_weights_tf_dim_ordering_tf_kernels.h5"
 
     if not os.path.exists(model_file_path):
+        print('downloading the vgg model')
         download_vgg16(model_file_path)
+        print('download of vgg model finished')
 
     vgg_model = vgg16.VGG16(weights=model_file_path)
     # load an image in PIL format
