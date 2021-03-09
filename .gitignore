@@ -137,3 +137,6 @@ dmypy.json
 
 # nn weights
 *.h5
+
+# ignore sorted folder
+sorted_folder
