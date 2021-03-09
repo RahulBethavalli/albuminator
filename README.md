@@ -1,9 +1,3 @@
----
-noteId: "7653ded080eb11ebbc5461774830beb8"
-tags: []
-
----
-
 # albuminator
 
 
