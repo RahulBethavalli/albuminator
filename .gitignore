@@ -140,3 +140,4 @@ dmypy.json
 
 # ignore sorted folder
 sorted_folder
+data
