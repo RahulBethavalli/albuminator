@@ -1,6 +1,8 @@
 # albuminator
+![demo-video](https://user-images.githubusercontent.com/17748489/110589065-bb8b2500-812a-11eb-860a-97303f459478.gif)
 
-![](images/demo-video.mov)
+
+
 
 ## TODO.
 
