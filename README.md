@@ -1,5 +1,7 @@
 # albuminator
-![demo-video](https://user-images.githubusercontent.com/17748489/110589065-bb8b2500-812a-11eb-860a-97303f459478.gif)
+
+https://user-images.githubusercontent.com/17748489/110589794-c5615800-812b-11eb-99a8-dbd9ac91c1d0.mp4
+
 
 
 
