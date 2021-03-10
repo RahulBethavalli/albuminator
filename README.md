@@ -1,5 +1,6 @@
 # albuminator
 
+![](images/demo-video.mov)
 
 ## TODO.
 
@@ -10,7 +11,3 @@
 - [x] Read how to deploy docker on AWS Lambda
 - [x] Deploy ⚽️!
 
-
-## Run following for Required Packages
-
-use environment.yml file to create the conda environment.
